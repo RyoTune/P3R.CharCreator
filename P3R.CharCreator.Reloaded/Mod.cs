@@ -1,8 +1,11 @@
 ﻿using P3R.CharCreator.Reloaded.Configuration;
+using P3R.CharCreator.Reloaded.Creator;
 using P3R.CharCreator.Reloaded.Template;
 using Reloaded.Hooks.ReloadedII.Interfaces;
 using Reloaded.Mod.Interfaces;
+using System.Diagnostics;
 using System.Drawing;
+using Unreal.ObjectsEmitter.Interfaces;
 
 namespace P3R.CharCreator.Reloaded;
 
@@ -18,6 +21,8 @@ public class Mod : ModBase
     private Config config;
     private readonly IModConfig modConfig;
 
+    private readonly CreatorService creator;
+
     public Mod(ModContext context)
     {
         this.modLoader = context.ModLoader;
@@ -29,6 +34,14 @@ public class Mod : ModBase
 
         Log.Initialize(NAME, this.log, Color.White);
         Log.LogLevel = this.config.LogLevel;
+
+#if DEBUG
+        Debugger.Launch();
+#endif
+
+        this.modLoader.GetController<IUnreal>().TryGetTarget(out var unreal);
+        this.creator = new(unreal!);
+        this.creator.Apply(this.config);
     }
 
     #region Standard Overrides
