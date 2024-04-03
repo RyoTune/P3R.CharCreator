@@ -42,6 +42,12 @@ internal static class AssetUtils
     public static string GetAssetPath(string assetFile)
     {
         var adjustedPath = assetFile.Replace('\\', '/').Replace(".uasset", string.Empty);
+
+        if (adjustedPath.IndexOf("Content") is int contentIndex && contentIndex > -1)
+        {
+            adjustedPath = adjustedPath.Substring(contentIndex + 8);
+        }
+
         if (!adjustedPath.StartsWith("/Game/"))
         {
             adjustedPath = $"/Game/{adjustedPath}";
