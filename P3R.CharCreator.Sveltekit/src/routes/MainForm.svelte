@@ -94,7 +94,7 @@
         Click on the <strong>textbox</strong> of any character's <strong>Character Data</strong> that
         you would like to edit.
       </li>
-      <li>Press <strong>Ctrl + A</strong> to select all the text.</li>
+      <li>Press <strong>Ctrl + A</strong> to select any existing text.</li>
       <li>Press <strong>Ctrl + V</strong> to paste your new character data.</li>
     </ol>
     <h1 class="title is-5">Importing Characters</h1>
