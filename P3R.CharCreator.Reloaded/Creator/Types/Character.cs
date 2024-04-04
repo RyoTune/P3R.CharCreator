@@ -10,8 +10,8 @@ public enum Character
     Mitsuru,
     Fuuka,
     Aigis,
-    //Ken,
-    //Koromaru,
+    Ken,
+    Koromaru,
     Shinjiro = 10,
 
     // Side-characters.

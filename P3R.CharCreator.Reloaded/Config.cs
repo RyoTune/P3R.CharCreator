@@ -1,5 +1,4 @@
-﻿using P3R.CharCreator.Reloaded.Creator.Types;
-using P3R.CharCreator.Reloaded.Template.Configuration;
+﻿using P3R.CharCreator.Reloaded.Template.Configuration;
 using System.ComponentModel;
 
 namespace P3R.CharCreator.Reloaded.Configuration;
@@ -10,64 +9,59 @@ public class Config : Configurable<Config>
     [DefaultValue(LogLevel.Information)]
     public LogLevel LogLevel { get; set; } = LogLevel.Information;
 
-    [DisplayName("Protagonist")]
-    [DefaultValue(Protag.MC)]
-    public Protag Protagonist { get; set; } = Protag.MC;
+    [DisplayName("Import Mods")]
+    [DefaultValue("")]
+    public string ImportMods { get; set; } = string.Empty;
 
-    [DisplayName("Base Skeleton")]
-    [Category("Base")]
-    [DefaultValue(Character.Player)]
-    public Character BaseSkeleton { get; set; } = Character.Player;
+    [Category("Character Data")]
+    [DisplayName("Player")]
+    [DefaultValue("")]
+    public string PlayerData { get; set; } = string.Empty;
 
-    [DisplayName("Hair")]
-    [Category("Base")]
-    [DefaultValue(Character.Player)]
-    public Character HairMesh { get; set; } = Character.Player;
+    [Category("Character Data")]
+    [DisplayName("Yukari")]
+    [DefaultValue("")]
+    public string YukariData { get; set; } = string.Empty;
 
-    [DisplayName("Face")]
-    [Category("Base")]
-    [DefaultValue(Character.Player)]
-    public Character FaceMesh { get; set; } = Character.Player;
+    [Category("Character Data")]
+    [DisplayName("Stupei")]
+    [DefaultValue("")]
+    public string SupeiData { get; set; } = string.Empty;
 
-    [DisplayName("Summer Uniform")]
-    [Category("Outfits")]
-    [DefaultValue(Character.Player)]
-    public Character SummerUniform { get; set; } = Character.Player;
+    [Category("Character Data")]
+    [DisplayName("Akihiko")]
+    [DefaultValue("")]
+    public string AkihikoData { get; set; } = string.Empty;
 
-    [DisplayName("Winter Uniform")]
-    [Category("Outfits")]
-    [DefaultValue(Character.Player)]
-    public Character WinterUniform { get; set; } = Character.Player;
+    [Category("Character Data")]
+    [DisplayName("Mitsuru")]
+    [DefaultValue("")]
+    public string MitsuruData { get; set; } = string.Empty;
 
-    [DisplayName("Summer Casual")]
-    [Category("Outfits")]
-    [DefaultValue(Character.Player)]
-    public Character SummerCasual { get; set; } = Character.Player;
+    [Category("Character Data")]
+    [DisplayName("Fuuka")]
+    [DefaultValue("")]
+    public string FuukaData { get; set; } = string.Empty;
 
-    [DisplayName("Winter Casual")]
-    [Category("Outfits")]
-    [DefaultValue(Character.Player)]
-    public Character WinterCasual { get; set; } = Character.Player;
+    [Category("Character Data")]
+    [DisplayName("Aigis")]
+    [DefaultValue("")]
+    public string AigisData { get; set; } = string.Empty;
 
-    [DisplayName("Common Animations")]
-    [Category("Animation")]
-    [DefaultValue(Character.Player)]
-    public Character CommonAnim { get; set; } = Character.Player;
+    [Category("Character Data")]
+    [DisplayName("Ken")]
+    [DefaultValue("")]
+    public string KenData { get; set; } = string.Empty;
 
-    [DisplayName("Combine Animations")]
-    [Category("Animation")]
-    [DefaultValue(Character.Player)]
-    public Character CombineAnim { get; set; } = Character.Player;
+    [Category("Character Data")]
+    [DisplayName("Koromaru")]
+    [DefaultValue("")]
+    public string KoromaruData { get; set; } = string.Empty;
 
-    [DisplayName("Event Animations")]
-    [Category("Animation")]
-    [DefaultValue(Character.Player)]
-    public Character EventAnim { get; set; } = Character.Player;
-
-    [DisplayName("Face Animations")]
-    [Category("Animation")]
-    [DefaultValue(Character.Player)]
-    public Character FaceAnim { get; set; } = Character.Player;
+    [Category("Character Data")]
+    [DisplayName("Shinjiro")]
+    [DefaultValue("")]
+    public string ShinjiroData { get; set; } = string.Empty;
 }
 
 /// <summary>
