@@ -1,4 +1,5 @@
-﻿using P3R.CharCreator.Reloaded.Template.Configuration;
+﻿using P3R.CharCreator.Reloaded.Creator.Types;
+using P3R.CharCreator.Reloaded.Template.Configuration;
 using System.ComponentModel;
 
 namespace P3R.CharCreator.Reloaded.Configuration;
@@ -26,7 +27,7 @@ public class Config : Configurable<Config>
     [Category("Character Data")]
     [DisplayName("Stupei")]
     [DefaultValue("")]
-    public string SupeiData { get; set; } = string.Empty;
+    public string StupeiData { get; set; } = string.Empty;
 
     [Category("Character Data")]
     [DisplayName("Akihiko")]
@@ -62,6 +63,23 @@ public class Config : Configurable<Config>
     [DisplayName("Shinjiro")]
     [DefaultValue("")]
     public string ShinjiroData { get; set; } = string.Empty;
+
+    public Dictionary<Character, string> GetCharacterData()
+    {
+        return new()
+        {
+            [Character.Player] = this.PlayerData,
+            [Character.Yukari] = this.YukariData,
+            [Character.Stupei] = this.StupeiData,
+            [Character.Akihiko] = this.AkihikoData,
+            [Character.Mitsuru] = this.MitsuruData,
+            [Character.Fuuka] = this.FuukaData,
+            [Character.Aigis] = this.AigisData,
+            [Character.Ken] = this.KenData,
+            [Character.Koromaru] = this.KoromaruData,
+            [Character.Shinjiro] = this.ShinjiroData,
+        };
+    }
 }
 
 /// <summary>

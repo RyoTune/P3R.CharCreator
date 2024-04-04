@@ -1,6 +1,7 @@
 ﻿using P3R.CharCreator.Reloaded.Configuration;
 using P3R.CharCreator.Reloaded.Creator;
 using P3R.CharCreator.Reloaded.Creator.Types;
+using P3R.CharCreator.Reloaded.Utils;
 using Reloaded.Mod.Interfaces;
 using System.Text.Json;
 
@@ -75,7 +76,7 @@ public class ConfiguratorMixinBase
             }
         }
 
-        return EncodeBase64(JsonSerializer.Serialize(charAssets, new JsonSerializerOptions() { WriteIndented = true, PropertyNamingPolicy = JsonNamingPolicy.CamelCase }));
+        return Base64.Encode(JsonSerializer.Serialize(charAssets, new JsonSerializerOptions() { WriteIndented = true, PropertyNamingPolicy = JsonNamingPolicy.CamelCase }));
     }
 
     private static void AssetsFromPack(List<CharacterAssets> charAssets, string modDir)
@@ -152,16 +153,12 @@ public class ConfiguratorMixinBase
         charAssets.Add(new("FEMC Winter Uniform", Character.Player, GetFemcCostume(992), AssetType.CostumeMesh));
         charAssets.Add(new("FEMC Summer Garb", Character.Player, GetFemcCostume(993), AssetType.CostumeMesh));
         charAssets.Add(new("FEMC Winter Garb", Character.Player, GetFemcCostume(994), AssetType.CostumeMesh));
-    }
-
-    private static string EncodeBase64(string input)
-    {
-        var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(input);
-        return Convert.ToBase64String(plainTextBytes);
+        charAssets.Add(new("FEMC", Character.Player, "/Game/Xrd777/Characters/Player/PC0002/Models/SK_PC0002_H999", AssetType.HairMesh));
+        charAssets.Add(new("FEMC", Character.Player, "/Game/Xrd777/Characters/Player/PC0002/Models/SK_PC0002_F999", AssetType.FaceMesh));
     }
 
     private static string GetFemcCostume(int costumeId)
-        => AssetUtils.GetAssetFile(Character.Yukari, 0, CostumeAssetType.Costume_Mesh)!.Replace("_C000", $"_C{costumeId:000}");
+        => AssetUtils.GetAssetPath(Character.Yukari, Creator.AssetType.CostumeMesh, 0).Replace("_C000", $"_C{costumeId:000}");
 
     #region Config Migration (Must implement if coming from old mod template with config in mod folder)
     /// <summary>
