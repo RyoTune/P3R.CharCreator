@@ -3,19 +3,65 @@
   "ModName": "P3R Character Creator",
   "ModAuthor": "zutomayofan50",
   "ModVersion": "1.0.0",
-  "ModDescription": "Customize the Player character.",
+  "ModDescription": "Create a custom character and customize existing ones!.",
   "ModDll": "P3R.CharCreator.Reloaded.dll",
   "ModIcon": "Preview.png",
   "ModR2RManagedDll32": "x86/P3R.CharCreator.Reloaded.dll",
   "ModR2RManagedDll64": "x64/P3R.CharCreator.Reloaded.dll",
   "ModNativeDll32": "",
   "ModNativeDll64": "",
+  "Tags": [],
+  "CanUnload": false,
+  "HasExports": false,
   "IsLibrary": false,
   "ReleaseMetadataFileName": "P3R.CharCreator.Reloaded.ReleaseMetadata.json",
-  "PluginData": {},
+  "PluginData": {
+    "GameBanana": {
+      "ItemType": "Mod",
+      "ItemId": 505093
+    },
+    "GameBananaDependencies": {
+      "IdToConfigMap": {
+        "Unreal.ObjectsEmitter.Reloaded": {
+          "Config": {
+            "ItemType": "Mod",
+            "ItemId": 500638
+          },
+          "ReleaseMetadataName": "Unreal.ObjectsEmitter.Reloaded.ReleaseMetadata.json"
+        }
+      }
+    },
+    "GitHubDependencies": {
+      "IdToConfigMap": {
+        "reloaded.sharedlib.hooks": {
+          "Config": {
+            "UserName": "Sewer56",
+            "RepositoryName": "Reloaded.SharedLib.Hooks.ReloadedII",
+            "UseReleaseTag": true,
+            "AssetFileName": "reloaded.sharedlib.hooks.zip"
+          },
+          "ReleaseMetadataName": "Sewer56.Update.ReleaseMetadata.json"
+        },
+        "Reloaded.Memory.SigScan.ReloadedII": {
+          "Config": {
+            "UserName": "Reloaded-Project",
+            "RepositoryName": "Reloaded.Memory.SigScan",
+            "UseReleaseTag": false,
+            "AssetFileName": "Mod.zip"
+          },
+          "ReleaseMetadataName": "Reloaded.Memory.SigScan.ReloadedII.ReleaseMetadata.json"
+        }
+      }
+    }
+  },
   "IsUniversalMod": false,
-  "ModDependencies": [ "reloaded.sharedlib.hooks", "Unreal.ObjectsEmitter.Reloaded" ],
+  "ModDependencies": [
+    "reloaded.sharedlib.hooks",
+    "Unreal.ObjectsEmitter.Reloaded"
+  ],
   "OptionalDependencies": [],
-  "SupportedAppId": ["p3r.exe"],
+  "SupportedAppId": [
+    "p3r.exe"
+  ],
   "ProjectUrl": ""
 }
