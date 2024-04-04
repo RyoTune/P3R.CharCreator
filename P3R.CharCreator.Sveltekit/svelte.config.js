@@ -18,7 +18,7 @@ const config = {
     prerender: {
       handleMissingId: (details) => {
         if (details.path !== '/P3R.CharCreator/#!') {
-          throw new Error(details.message);
+          throw new Error(details.message + ` || path: ${details.path}`);
         }
       }
     }
