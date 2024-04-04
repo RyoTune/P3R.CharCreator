@@ -11,27 +11,22 @@ internal static class AssetUtils
     /// <param name="costumeId">Costume ID.</param>
     /// <param name="type">Asset type.</param>
     /// <returns></returns>
-    public static string? GetAssetFile(Character character, int costumeId, CostumeAssetType type)
-    {
-        string? assetFile = type switch
+    public static string GetAssetPath(Character character, AssetType type, int costumeId = 0)
+        => type switch
         {
-            CostumeAssetType.Base_Mesh => $"/Game/Xrd777/Characters/Player/PC{GetCharIdString(character)}/Models/SK_PC{GetCharIdString(character)}_BaseSkeleton.uasset",
-            CostumeAssetType.Costume_Mesh => $"/Game/Xrd777/Characters/Player/PC{GetCharIdString(character)}/Models/SK_PC{GetCharIdString(character)}_C{costumeId:000}.uasset",
-            CostumeAssetType.Hair_Mesh => $"/Game/Xrd777/Characters/Player/PC{GetCharIdString(character)}/Models/SK_PC{GetCharIdString(character)}_H{costumeId:000}.uasset",
-            CostumeAssetType.Face_Mesh => $"/Game/Xrd777/Characters/Player/PC{GetCharIdString(character)}/Models/SK_PC{GetCharIdString(character)}_F{costumeId:000}.uasset",
-
-            CostumeAssetType.Base_Anim => $"/Game/Xrd777/Characters/Player/PC{GetCharIdString(character)}/ABP_PC{GetCharIdString(character)}.uasset",
-            CostumeAssetType.Costume_Anim => "/CharacterBase/Human/Blueprints/Animation/ABP_CH_CostumeBase.uasset",
-            CostumeAssetType.Hair_Anim => "/CharacterBase/Human/Blueprints/Animation/ABP_CH_HairBase.uasset",
-            CostumeAssetType.Face_Anim => null,
+            AssetType.BaseMesh => FormatAssetPath($"/Game/Xrd777/Characters/Player/PC{FormatCharId(character)}/Models/SK_PC{FormatCharId(character)}_BaseSkelton", character),
+            AssetType.CostumeMesh => FormatAssetPath($"/Game/Xrd777/Characters/Player/PC{FormatCharId(character)}/Models/SK_PC{FormatCharId(character)}_C{costumeId:000}", character),
+            AssetType.HairMesh => FormatAssetPath($"/Game/Xrd777/Characters/Player/PC{FormatCharId(character)}/Models/SK_PC{FormatCharId(character)}_H{costumeId:000}", character),
+            AssetType.FaceMesh => FormatAssetPath($"/Game/Xrd777/Characters/Player/PC{FormatCharId(character)}/Models/SK_PC{FormatCharId(character)}_F{costumeId:000}", character),
+            AssetType.CommonAnim => FormatAssetPath($"/Game/Xrd777/Characters/Data/DataAsset/Player/PC{FormatCharId(character)}/DA_PC{FormatCharId(character)}_CommonAnim", character),
+            AssetType.CombineAnim => FormatAssetPath($"/Game/Xrd777/Characters/Data/DataAsset/Player/PC{FormatCharId(character)}/DA_PC{FormatCharId(character)}_CombineAnim", character),
+            AssetType.EventAnim => FormatAssetPath($"/Game/Xrd777/Characters/Data/DataAsset/Player/PC{FormatCharId(character)}/DA_PC{FormatCharId(character)}_EventAnim", character),
+            AssetType.FaceAnim => FormatAssetPath($"/Game/Xrd777/Characters/Data/DataAsset/Player/PC{FormatCharId(character)}/DA_PC{FormatCharId(character)}_FaceAnim", character),
             _ => throw new Exception(),
         };
 
-        return assetFile;
-    }
-
-    public static string? GetAssetFile(Character character, Outfit outfit, CostumeAssetType type)
-        => GetAssetFile(character, (int)outfit, type);
+    public static string GetAssetFile(Character character, AssetType type, Outfit outfit)
+        => GetAssetPath(character, type, (int)outfit);
 
     /// <summary>
     /// Gets the expected asset path from asset file path.
@@ -56,12 +51,18 @@ internal static class AssetUtils
         return adjustedPath;
     }
 
-    public static string? GetAssetPath(Character character, int costumeId, CostumeAssetType type)
-    {
-        var assetFile = GetAssetFile(character, costumeId, type);
-        return assetFile != null ? GetAssetPath(assetFile) : null;
-    }
-
-    public static string GetCharIdString(Character character)
+    public static string FormatCharId(Character character)
         => ((int)character).ToString("0000");
+
+    private static string FormatAssetPath(string path, Character character)
+    {
+        if (character >= Character.Player && character <= Character.Shinjiro)
+        {
+            return path;
+        }
+        else
+        {
+            return path.Replace("PC", "SC").Replace("Player", "Sub");
+        }
+    }
 }
