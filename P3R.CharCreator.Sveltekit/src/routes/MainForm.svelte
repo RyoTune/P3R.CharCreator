@@ -54,19 +54,6 @@
   <div class="level">
     <div class="level-left">
       <div>
-        <h1 class="title is-4">Import Character</h1>
-        <h1 class="subtitle is-6">Import an existing character for editing.</h1>
-      </div>
-    </div>
-    <div class="level-right">
-      <button class="button is-info" on:click={() => openImportDialog({ name: 'Import Character' })}
-        >Import Character</button
-      >
-    </div>
-  </div>
-  <div class="level">
-    <div class="level-left">
-      <div>
         <h1 class="title is-4">Import Mods</h1>
         <h1 class="subtitle is-6">Add new character assets from your mods.</h1>
       </div>
@@ -74,6 +61,19 @@
     <div class="level-right">
       <button class="button is-info" on:click={() => openImportDialog({ name: 'Import Mods' })}
         >Import Mods</button
+      >
+    </div>
+  </div>
+  <div class="level">
+    <div class="level-left">
+      <div>
+        <h1 class="title is-4">Import Character</h1>
+        <h1 class="subtitle is-6">Import an existing character for editing.</h1>
+      </div>
+    </div>
+    <div class="level-right">
+      <button class="button is-info" on:click={() => openImportDialog({ name: 'Import Character' })}
+        >Import Character</button
       >
     </div>
   </div>
