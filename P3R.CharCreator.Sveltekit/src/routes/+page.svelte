@@ -4,6 +4,11 @@
   import OutfitsForm from './OutfitsForm.svelte';
   import MainForm from './MainForm.svelte';
   import { charConfig } from './ConfigStore';
+  import { Character } from '$lib/types/Character';
+
+  const playerChars = (
+    Object.values(Character).filter((x) => !isNaN(Number(x))) as Character[]
+  ).filter((x) => x >= Character.Player && x <= Character.Shinjiro);
 
   let tab: string = 'main';
   let charTab: string = 'data';
@@ -62,7 +67,20 @@
         {/if}
       </div>
       <div class="column">
-        <h1 id="char-config-title" class="title">Your Character</h1>
+        <div class="field">
+          <label for="protag-select" class="label title is-4">
+            <h1 id="char-config-title" class="title">Your Character</h1>
+          </label>
+          <div class="control">
+            <div class="select">
+              <select id="protag-select" bind:value={$charConfig.base.character}>
+                {#each playerChars as char}
+                  <option value={char}>{Character[char]}</option>
+                {/each}
+              </select>
+            </div>
+          </div>
+        </div>
         <div class="tabs">
           <ul>
             <li class:is-active={charTab === 'data'}>
