@@ -5,42 +5,42 @@ export function GetAssetFile(char: Character, assetType: AssetType, costumeId: n
   switch (assetType) {
     case AssetType.BaseMesh:
       return FormatAssetPath(
-        `/Game/Xrd777/Characters/Player/PC${FormatCharId(char)}/Models/SK_PC${FormatCharId(char)}_BaseSkeleton.uasset`,
+        `/Game/Xrd777/Characters/Player/PC${FormatCharId(char)}/Models/SK_PC${FormatCharId(char)}_BaseSkelton`,
         char
       );
     case AssetType.CostumeMesh:
       return FormatAssetPath(
-        `/Game/Xrd777/Characters/Player/PC${FormatCharId(char)}/Models/SK_PC${FormatCharId(char)}_C${FormatCostumeId(costumeId)}.uasset`,
+        `/Game/Xrd777/Characters/Player/PC${FormatCharId(char)}/Models/SK_PC${FormatCharId(char)}_C${FormatCostumeId(costumeId)}`,
         char
       );
     case AssetType.FaceMesh:
       return FormatAssetPath(
-        `/Game/Xrd777/Characters/Player/PC${FormatCharId(char)}/Models/SK_PC${FormatCharId(char)}_F${FormatCostumeId(costumeId)}.uasset`,
+        `/Game/Xrd777/Characters/Player/PC${FormatCharId(char)}/Models/SK_PC${FormatCharId(char)}_F${FormatCostumeId(costumeId)}`,
         char
       );
     case AssetType.HairMesh:
       return FormatAssetPath(
-        `/Game/Xrd777/Characters/Player/PC${FormatCharId(char)}/Models/SK_PC${FormatCharId(char)}_H${FormatCostumeId(costumeId)}.uasset`,
+        `/Game/Xrd777/Characters/Player/PC${FormatCharId(char)}/Models/SK_PC${FormatCharId(char)}_H${FormatCostumeId(costumeId)}`,
         char
       );
     case AssetType.CommonAnim:
       return FormatAssetPath(
-        `/Game/Xrd777/Characters/Data/DataAsset/Player/PC${FormatCharId(char)}/DA_PC${FormatCharId(char)}_CommonAnim.uasset`,
+        `/Game/Xrd777/Characters/Data/DataAsset/Player/PC${FormatCharId(char)}/DA_PC${FormatCharId(char)}_CommonAnim`,
         char
       );
     case AssetType.CombineAnim:
       return FormatAssetPath(
-        `/Game/Xrd777/Characters/Data/DataAsset/Player/PC${FormatCharId(char)}/DA_PC${FormatCharId(char)}_CombineAnim.uasset`,
+        `/Game/Xrd777/Characters/Data/DataAsset/Player/PC${FormatCharId(char)}/DA_PC${FormatCharId(char)}_CombineAnim`,
         char
       );
     case AssetType.EventAnim:
       return FormatAssetPath(
-        `/Game/Xrd777/Characters/Data/DataAsset/Player/PC${FormatCharId(char)}/DA_PC${FormatCharId(char)}_EventAnim.uasset`,
+        `/Game/Xrd777/Characters/Data/DataAsset/Player/PC${FormatCharId(char)}/DA_PC${FormatCharId(char)}_EventAnim`,
         char
       );
     case AssetType.FaceAnim:
       return FormatAssetPath(
-        `/Game/Xrd777/Characters/Data/DataAsset/Player/PC${FormatCharId(char)}/DA_PC${FormatCharId(char)}_FaceAnim.uasset`,
+        `/Game/Xrd777/Characters/Data/DataAsset/Player/PC${FormatCharId(char)}/DA_PC${FormatCharId(char)}_FaceAnim`,
         char
       );
     default:

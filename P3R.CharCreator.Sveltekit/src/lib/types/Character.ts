@@ -1,4 +1,5 @@
 export enum Character {
+  NONE,
   Player = 1,
   Yukari,
   Stupei,
