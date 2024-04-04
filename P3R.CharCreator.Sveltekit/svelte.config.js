@@ -14,6 +14,13 @@ const config = {
     adapter: adapter(),
     paths: {
       base: process.argv.includes('dev') ? '' : process.env.BASE_PATH
+    },
+    prerender: {
+      handleMissingId: (details) => {
+        if (details.path !== '/P3R.CharCreator/#!') {
+          throw new Error(details.message);
+        }
+      }
     }
   }
 };
