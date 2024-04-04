@@ -85,14 +85,16 @@
     <li>Next, click on <strong>Open Config</strong>.</li>
     <h1 class="title is-5">Using Your Character</h1>
     <ol>
-      <li>Customize a character by going through the various <strong>tabs above</strong>.</li>
       <li>
-        Once finished, click the <strong>Copy button</strong> on the right. This will copy your character's
+        Customize a <strong>character</strong> by going through the various
+        <strong>tabs above</strong>.
+      </li>
+      <li>
+        Once finished, click the <strong>Copy button</strong> on the right. This will copy the character's
         data.
       </li>
       <li>
-        Click on the <strong>textbox</strong> of any character's <strong>Character Data</strong> that
-        you would like to edit.
+        Click on the <strong>textbox</strong> of the character's <strong>Character Data</strong>.
       </li>
       <li>Press <strong>Ctrl + A</strong> to select any existing text.</li>
       <li>Press <strong>Ctrl + V</strong> to paste your new character data.</li>
@@ -122,7 +124,9 @@
         <br /><b>Supported mods:</b>
       </li>
       <ul>
+        <li>P3R Character Creator <strong>asset packs</strong>.</li>
         <li>Mods using <strong>Costume Framework</strong>.</li>
+        <li>The <strong>FEMC Reloaded Project</strong> (v1.0.8 last tested).</li>
       </ul>
       <li>
         Click on the <strong>textbox</strong> for <strong>Import Mods</strong>.
