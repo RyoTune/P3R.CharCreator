@@ -1,5 +1,6 @@
 <script lang="ts">
   import { Character } from '$lib/types/Character';
+  import { FormatAssetName } from '$lib/utils/AssetUtils';
   import { skeletons, charConfig, faces, hairs } from './ConfigStore';
 </script>
 
@@ -33,9 +34,7 @@
           <select id="hair-select" bind:value={$charConfig.base.hair}>
             <option value={null}>Default</option>
             {#each $hairs as hair}
-              <option value={hair.assetPath}
-                >{`${Character[hair.character]}'s ${hair.name} Hair`}</option
-              >
+              <option value={hair.assetPath}>{FormatAssetName(hair)}</option>
             {/each}
           </select>
         </div>
@@ -51,9 +50,7 @@
           <select id="face-select" bind:value={$charConfig.base.face}>
             <option value={null}>Default</option>
             {#each $faces as face}
-              <option value={face.assetPath}
-                >{`${Character[face.character]}'s ${face.name} Face`}</option
-              >
+              <option value={face.assetPath}>{FormatAssetName(face)}</option>
             {/each}
           </select>
         </div>

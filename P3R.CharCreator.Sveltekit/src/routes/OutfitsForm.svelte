@@ -1,5 +1,6 @@
 <script lang="ts">
   import { Character } from '$lib/types/Character';
+  import { FormatAssetName } from '$lib/utils/AssetUtils';
   import { charConfig, costumes, gameCostumes } from './ConfigStore';
   $: outfitEntries = gameCostumes.filter(
     (x) => x.character == $charConfig.base.character && x.outfit != undefined
@@ -20,9 +21,7 @@
           <select id={`outfit-${entry.outfit}`} bind:value={$charConfig.outfits[entry.outfit ?? 0]}>
             <option value={null}>Default</option>
             {#each $costumes as costume}
-              <option value={costume.assetPath}
-                >{`${Character[costume.character]}'s ${costume.name}`}</option
-              >
+              <option value={costume.assetPath}>{FormatAssetName(costume)}</option>
             {/each}
           </select>
         </div>

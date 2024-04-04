@@ -1,5 +1,6 @@
 import { AssetType } from '$lib/types/AssetType';
 import { Character } from '$lib/types/Character';
+import type { CharacterAsset } from '$lib/types/CharacterAsset';
 
 export function GetAssetFile(char: Character, assetType: AssetType, costumeId: number = 0): string {
   switch (assetType) {
@@ -62,4 +63,12 @@ export function FormatCharId(char: Character) {
 
 export function FormatCostumeId(costumeId: number) {
   return String(costumeId).padStart(3, '0');
+}
+
+export function FormatAssetName(asset: CharacterAsset): string {
+  if (asset.character == Character.NONE) {
+    return asset.name;
+  }
+
+  return `${Character[asset.character]}'s ${asset.name}`;
 }

@@ -6,7 +6,9 @@ import { GetAssetFile } from '$lib/utils/AssetUtils';
 import { derived, writable } from 'svelte/store';
 import gameCostumesJson from '$lib/data/costumes.json';
 
-const gameChars = Object.values(Character).filter((x) => !isNaN(x as Character)) as Character[];
+const gameChars = Object.values(Character).filter(
+  (x) => !isNaN(x as Character) && x != Character.NONE
+) as Character[];
 export const gameCostumes = (
   Object.values(gameCostumesJson).flat() as unknown as {
     Character: number;
