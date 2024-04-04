@@ -1,6 +1,9 @@
 ﻿using P3R.CharCreator.Reloaded.Configuration;
 using P3R.CharCreator.Reloaded.Creator.Types;
+using P3R.CharCreator.Reloaded.Utils;
+using System.Text.Json;
 using Unreal.ObjectsEmitter.Interfaces;
+using static P3R.CharCreator.Reloaded.Utils.Common;
 
 namespace P3R.CharCreator.Reloaded.Creator;
 
@@ -15,66 +18,59 @@ internal class CreatorService
 
     public void Apply(Config config)
     {
+        foreach (var charData in config.GetCharacterData())
+        {
+            if (string.IsNullOrEmpty(charData.Value) == false
+                && DecodeCharConfig(charData.Value) is CharacterConfig charConfig)
+            {
+                this.ApplyCharConfig(charConfig);
+            }
+        }
+    }
+
+    private void ApplyCharConfig(CharacterConfig charConfig)
+    {
         // Base.
-        this.RedirectToCharAsset("/Game/Xrd777/Characters/Player/PC0001/Models/SK_PC0001_BaseSkelton.uasset", config.BaseSkeleton);
-        this.RedirectToCharAsset("/Game/Xrd777/Characters/Player/PC0001/Models/SK_PC0001_F000.uasset", config.FaceMesh);
-        this.RedirectToCharAsset("/Game/Xrd777/Characters/Player/PC0001/Models/SK_PC0001_H000.uasset", config.HairMesh);
+        DoIfString(charConfig.Base.BaseSkeleton, path => this.RedirectAsset(AssetUtils.GetAssetPath(charConfig.Base.Character, AssetType.BaseMesh), path));
+        DoIfString(charConfig.Base.Hair, path => this.RedirectAsset(AssetUtils.GetAssetPath(charConfig.Base.Character, AssetType.HairMesh), path));
+        DoIfString(charConfig.Base.Face, path => this.RedirectAsset(AssetUtils.GetAssetPath(charConfig.Base.Character, AssetType.FaceMesh), path));
 
         // Animations.
-        this.RedirectToCharAsset("/Game/Xrd777/Characters/Data/DataAsset/Player/PC0001/DA_PC0001_CommonAnim.uasset", config.CommonAnim);
-        this.RedirectToCharAsset("/Game/Xrd777/Characters/Data/DataAsset/Player/PC0001/DA_PC0001_CombineAnim.uasset", config.CombineAnim);
-        this.RedirectToCharAsset("/Game/Xrd777/Characters/Data/DataAsset/Player/PC0001/DA_PC0001_EventAnim.uasset", config.EventAnim);
-        this.RedirectToCharAsset("/Game/Xrd777/Characters/Data/DataAsset/Player/PC0001/DA_PC0001_FaceAnim.uasset", config.FaceAnim);
+        DoIfString(charConfig.Animations.Common, path => this.RedirectAsset(AssetUtils.GetAssetPath(charConfig.Base.Character, AssetType.CommonAnim), path));
+        DoIfString(charConfig.Animations.Face, path => this.RedirectAsset(AssetUtils.GetAssetPath(charConfig.Base.Character, AssetType.FaceAnim), path));
+        DoIfString(charConfig.Animations.Combine, path => this.RedirectAsset(AssetUtils.GetAssetPath(charConfig.Base.Character, AssetType.CombineAnim), path));
+        DoIfString(charConfig.Animations.Event, path => this.RedirectAsset(AssetUtils.GetAssetPath(charConfig.Base.Character, AssetType.EventAnim), path));
 
         // Outfits.
-        this.RedirectPlayerOutfit(Outfit.Summer_Uniform, config.SummerUniform);
-        this.RedirectPlayerOutfit(Outfit.Winter_Uniform, config.WinterUniform);
-        this.RedirectPlayerOutfit(Outfit.Summer_Casual, config.SummerCasual);
-        this.RedirectPlayerOutfit(Outfit.Winter_Casual, config.WinterCasual);
+        foreach (var outfit in charConfig.Outfits)
+        {
+            DoIfString(outfit.Value, path => this.RedirectAsset(AssetUtils.GetAssetPath(charConfig.Base.Character, AssetType.CostumeMesh, (int)outfit.Key), path));
+        }
+
+        Log.Information($"{charConfig.Base.Character}: Applied character data.");
     }
 
-    private void RedirectToCharAsset(string assetFile, Character redirectChar)
+    private void RedirectAsset(string ogAssetPath, string newAssetPath)
     {
-        // No need to redirect player assets back to player.
-        if (redirectChar == Character.Player)
-        {
-            return;
-        }
+        var ogFnames = new AssetFNames(ogAssetPath);
+        var newFnames = new AssetFNames(newAssetPath);
 
-        var fnames = new AssetFNames(assetFile);
-
-        if (redirectChar >= Character.Player && redirectChar <= Character.Shinjiro)
-        {
-            this.unreal.AssignFName(Mod.NAME, fnames.AssetName, fnames.AssetName.Replace("0001", $"{(int)redirectChar:0000}"));
-            this.unreal.AssignFName(Mod.NAME, fnames.AssetPath, fnames.AssetPath.Replace("0001", $"{(int)redirectChar:0000}"));
-        }
-        else if (redirectChar == Character.FEMC)
-        {
-            this.unreal.AssignFName(Mod.NAME, fnames.AssetName, fnames.AssetName.Replace("0001", "0002").Replace("F000", "F999").Replace("H000", "H999"));
-            this.unreal.AssignFName(Mod.NAME, fnames.AssetPath, fnames.AssetPath.Replace("0001", "0002").Replace("F000", "F999").Replace("H000", "H999"));
-        }
-        else
-        {
-            this.unreal.AssignFName(Mod.NAME, fnames.AssetName, fnames.AssetName.Replace("PC0001", $"SC{(int)redirectChar:0000}"));
-            this.unreal.AssignFName(Mod.NAME, fnames.AssetPath, fnames.AssetPath.Replace("PC0001", $"SC{(int)redirectChar:0000}").Replace("Player", "Sub", StringComparison.OrdinalIgnoreCase));
-        }
+        this.unreal.AssignFName(Mod.NAME, ogFnames.AssetName, newFnames.AssetName);
+        this.unreal.AssignFName(Mod.NAME, ogFnames.AssetPath, newFnames.AssetPath);
     }
 
-    private void RedirectPlayerOutfit(Outfit outfit, Character redirectChar)
+    private static CharacterConfig? DecodeCharConfig(string charData)
     {
-        var assetFile = AssetUtils.GetAssetFile(Character.Player, outfit, CostumeAssetType.Costume_Mesh)!;
-
-        var fnames = new AssetFNames(assetFile);
-
-        if (redirectChar >= Character.Player && redirectChar <= Character.Shinjiro)
+        try
         {
-            this.unreal.AssignFName(Mod.NAME, fnames.AssetName, fnames.AssetName.Replace("0001", $"{(int)redirectChar:0000}"));
-            this.unreal.AssignFName(Mod.NAME, fnames.AssetPath, fnames.AssetPath.Replace("0001", $"{(int)redirectChar:0000}"));
+            var json = Base64.Decode(charData);
+            var charConfig = JsonSerializer.Deserialize<CharacterConfig>(json, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true }) ?? throw new Exception();
+            return charConfig;
         }
-        else
+        catch (Exception ex)
         {
-            this.unreal.AssignFName(Mod.NAME, fnames.AssetName, fnames.AssetName.Replace("PC0001", $"SC{(int)redirectChar:0000}"));
-            this.unreal.AssignFName(Mod.NAME, fnames.AssetPath, fnames.AssetPath.Replace("PC0001", $"SC{(int)redirectChar:0000}").Replace("Player", "Sub", StringComparison.OrdinalIgnoreCase));
+            Log.Error(ex, "Failed to decode character data.");
+            return null;
         }
     }
 
