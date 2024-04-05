@@ -52,6 +52,12 @@ internal class CreatorService
 
     private void RedirectAsset(string ogAssetPath, string newAssetPath)
     {
+        // Don't redirect to self.
+        if (ogAssetPath == newAssetPath)
+        {
+            return;
+        }
+
         var ogFnames = new AssetFNames(ogAssetPath);
         var newFnames = new AssetFNames(newAssetPath);
 
