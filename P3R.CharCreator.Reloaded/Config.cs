@@ -14,6 +14,11 @@ public class Config : Configurable<Config>
     [DefaultValue("")]
     public string ImportMods { get; set; } = string.Empty;
 
+    [DisplayName("Enable Mod Characters")]
+    [Description("Allow for character data to be loaded from mods,\nsuch as character preset mods.")]
+    [DefaultValue(true)]
+    public bool EnableModChars { get; set; } = true;
+
     [Category("Character Data")]
     [DisplayName("Player")]
     [DefaultValue("")]

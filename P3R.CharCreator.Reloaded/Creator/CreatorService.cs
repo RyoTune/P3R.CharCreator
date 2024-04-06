@@ -16,12 +16,12 @@ internal class CreatorService
         this.unreal = unreal;
     }
 
-    public void Apply(Config config)
+    public void Apply(Dictionary<Character, string> charData)
     {
-        foreach (var charData in config.GetCharacterData())
+        foreach (var data in charData)
         {
-            if (string.IsNullOrEmpty(charData.Value) == false
-                && DecodeCharConfig(charData.Value) is CharacterConfig charConfig)
+            if (string.IsNullOrEmpty(data.Value) == false
+                && DecodeCharConfig(data.Value) is CharacterConfig charConfig)
             {
                 this.ApplyCharConfig(charConfig);
             }
