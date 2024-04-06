@@ -5,6 +5,8 @@
   import MainForm from './MainForm.svelte';
   import { charConfig } from './ConfigStore';
   import { Character } from '$lib/types/Character';
+  import logoText from '$lib/assets/images/logo-text.webp';
+  import logoBg from '$lib/assets/images/logo-bg.webp';
 
   const playerChars = (
     Object.values(Character).filter((x) => !isNaN(Number(x))) as Character[]
@@ -30,9 +32,9 @@
 </svelte:head>
 
 <section class="hero is-primary is-small">
-  <div class="hero-body">
-    <p class="title">P3R Character Creator</p>
-    <p class="subtitle">Easily customize <strong>any</strong> character!</p>
+  <div id="logo-container">
+    <img id="logo-bg" alt="Logo Background" src={logoBg} />
+    <img id="logo-text" alt="Logo Text" src={logoText} />
   </div>
 </section>
 
@@ -134,5 +136,34 @@
 
   #char-config-title {
     margin-bottom: 0;
+  }
+
+  .hero {
+    height: 150px;
+    background-color: #e5771e;
+    overflow: hidden;
+  }
+
+  #logo-container {
+    display: grid;
+    height: inherit;
+    width: 100%;
+    grid-template-rows: 1;
+    grid-template-columns: 1;
+  }
+
+  #logo-text {
+    grid-area: 1 / 1;
+    justify-self: center;
+    height: inherit;
+    object-fit: contain;
+    padding: 0.5rem;
+  }
+
+  #logo-bg {
+    grid-area: 1 / 1;
+    object-fit: cover;
+    height: inherit;
+    width: 100%;
   }
 </style>
