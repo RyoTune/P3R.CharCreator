@@ -86,14 +86,21 @@ public class Mod : ModBase
                 if (character == Character.NONE) continue;
 
                 var charPresetFile = Path.Join(charPresetsDir, $"{character}.txt");
-                if (!File.Exists(charPresetFile))
+                try
                 {
-                    continue;
-                }
+                    if (!File.Exists(charPresetFile))
+                    {
+                        continue;
+                    }
 
-                var charPresetData = File.ReadAllText(charPresetFile);
-                this.charData[character] = charPresetData;
-                Log.Information($"Loaded character preset. Mod: {config.ModId} || Character: {character}");
+                    var charPresetData = File.ReadAllText(charPresetFile);
+                    this.charData[character] = charPresetData;
+                    Log.Information($"Loaded character preset. Mod: {config.ModId} || Character: {character}");
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, $"Failed to load character preset file.\nFile: {charPresetFile}");
+                }
             }
         }
     }
