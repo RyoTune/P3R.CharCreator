@@ -5,10 +5,12 @@ import { CharacterConfig } from '$lib/types/CharacterConfig';
 import { GetAssetFile } from '$lib/utils/AssetUtils';
 import { derived, writable } from 'svelte/store';
 import gameCostumesJson from '$lib/data/costumes.json';
+import { addExtraAssets } from '$lib/utils/ExtraAssets';
 
 const gameChars = Object.values(Character).filter(
   (x) => !isNaN(x as Character) && x != Character.NONE
 ) as Character[];
+
 export const gameCostumes = (
   Object.values(gameCostumesJson).flat() as unknown as {
     Character: number;
@@ -116,6 +118,10 @@ const gameAssets = gameSkeletons.concat(
   gameCostumes
 );
 
+// Add extra assets from game.
+addExtraAssets(gameAssets);
+sortAssets(gameAssets);
+
 const charAssets = writable(gameAssets);
 
 export const skeletons = derived(charAssets, ($charAssets) =>
@@ -159,4 +165,8 @@ export function AddAssets(assets: CharacterAsset[]) {
       .filter((x) => Character[x.character] != undefined)
       .sort((a, b) => a.character - b.character)
   );
+}
+
+function sortAssets(assets: CharacterAsset[]) {
+  assets.sort((a, b) => a.character - b.character);
 }
