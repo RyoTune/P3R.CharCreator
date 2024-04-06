@@ -5,6 +5,7 @@
   import MainForm from './MainForm.svelte';
   import { charConfig } from './ConfigStore';
   import { Character } from '$lib/types/Character';
+  import { CharacterConfig } from '$lib/types/CharacterConfig';
   import logoText from '$lib/assets/images/logo-text.webp';
   import logoBg from '$lib/assets/images/logo-bg.webp';
 
@@ -23,6 +24,10 @@
 
   function copyCharData() {
     navigator.clipboard.writeText(charConfigData);
+  }
+
+  function reset() {
+    $charConfig = new CharacterConfig();
   }
 </script>
 
@@ -70,12 +75,15 @@
       </div>
       <div class="column">
         <div class="field">
-          <label for="protag-select" class="label title is-4">
-            <h1 id="char-config-title" class="title">Your Character</h1>
+          <label for="char-select" class="label title is-4">
+            <div class="level">
+              <h1 id="char-config-title" class="title">Your Character</h1>
+              <button class="button" on:click={() => reset()}>Reset</button>
+            </div>
           </label>
           <div class="control">
             <div class="select">
-              <select id="protag-select" bind:value={$charConfig.base.character}>
+              <select id="char-select" bind:value={$charConfig.base.character}>
                 {#each playerChars as char}
                   <option value={char}>{Character[char]}</option>
                 {/each}
