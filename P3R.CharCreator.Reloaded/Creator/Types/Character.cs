@@ -43,5 +43,5 @@ public enum Character
     //Natsuki,
     //Takeharu,
 
-    //FEMC = 999,
+    FEMC = 999,
 }

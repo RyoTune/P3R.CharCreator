@@ -1,8 +1,8 @@
 {
   "ModId": "P3R.CharCreator.Reloaded",
   "ModName": "P3R Character Creator",
-  "ModAuthor": "zutomayofan50",
-  "ModVersion": "1.0.1",
+  "ModAuthor": "RyoTune",
+  "ModVersion": "1.1.0",
   "ModDescription": "Create a custom character and customize existing ones!",
   "ModDll": "P3R.CharCreator.Reloaded.dll",
   "ModIcon": "Preview.png",
@@ -16,10 +16,6 @@
   "IsLibrary": false,
   "ReleaseMetadataFileName": "P3R.CharCreator.Reloaded.ReleaseMetadata.json",
   "PluginData": {
-    "GameBanana": {
-      "ItemType": "Mod",
-      "ItemId": 505093
-    },
     "GameBananaDependencies": {
       "IdToConfigMap": {
         "Unreal.ObjectsEmitter.Reloaded": {
@@ -52,6 +48,12 @@
           "ReleaseMetadataName": "Reloaded.Memory.SigScan.ReloadedII.ReleaseMetadata.json"
         }
       }
+    },
+    "GitHubRelease": {
+      "UserName": "RyoTune ",
+      "RepositoryName": "P3R.CharCreator",
+      "UseReleaseTag": false,
+      "AssetFileName": "Mod.zip"
     }
   },
   "IsUniversalMod": false,
@@ -63,5 +65,7 @@
   "SupportedAppId": [
     "p3r.exe"
   ],
-  "ProjectUrl": ""
+  "ProjectUrl": "",
+  "CreatorUrl": "",
+  "IsSeparator": false
 }

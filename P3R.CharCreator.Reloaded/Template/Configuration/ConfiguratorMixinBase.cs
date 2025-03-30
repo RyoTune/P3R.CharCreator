@@ -147,29 +147,26 @@ public class ConfiguratorMixinBase
 
     private static void AssetsFromFemc(List<CharacterAssets> charAssets)
     {
-        charAssets.Add(new("FEMC Summer Uniform", Character.NONE, GetFemcCostume(991), AssetType.CostumeMesh));
-        charAssets.Add(new("FEMC Winter Uniform", Character.NONE, GetFemcCostume(992), AssetType.CostumeMesh));
+        charAssets.Add(new("FEMC Apron", Character.NONE, "/Game/Xrd777/Characters/Player/FemC/Femc_Apron", AssetType.CostumeMesh));
+        charAssets.Add(new("FEMC SEES Outfit", Character.NONE, "/Game/Xrd777/Characters/Player/FemC/Femc_BattleArmor", AssetType.CostumeMesh));
+        charAssets.Add(new("FEMC Be Blue V Uniform", Character.NONE, "/Game/Xrd777/Characters/Player/FemC/Femc_BeBlue", AssetType.CostumeMesh));
+        charAssets.Add(new("FEMC Chagall Cafe Uniform", Character.NONE, "/Game/Xrd777/Characters/Player/FemC/Femc_Cafe", AssetType.CostumeMesh));
+        charAssets.Add(new("FEMC Nightwear", Character.NONE, "/Game/Xrd777/Characters/Player/FemC/Femc_Nightwear", AssetType.CostumeMesh));
+        //charAssets.Add(new("FEMC P4 Uniform", Character.NONE, "/Game/Xrd777/Characters/Player/FemC/Femc_P4_Uniform", AssetType.CostumeMesh));
+        charAssets.Add(new("FEMC Phantom Thief", Character.NONE, "/Game/Xrd777/Characters/Player/FemC/Femc_PhantomThief", AssetType.CostumeMesh));
+        charAssets.Add(new("FEMC Screen Shot Uniform", Character.NONE, "/Game/Xrd777/Characters/Player/FemC/Femc_ScreenshotUniform", AssetType.CostumeMesh));
+        charAssets.Add(new("FEMC Summer Casual", Character.NONE, "/Game/Xrd777/Characters/Player/FemC/Femc_Summer_Casual", AssetType.CostumeMesh));
+        charAssets.Add(new("FEMC Summer Uniform", Character.NONE, "/Game/Xrd777/Characters/Player/FemC/Femc_Summer_School", AssetType.CostumeMesh));
+        charAssets.Add(new("FEMC Swimsuit", Character.NONE, "/Game/Xrd777/Characters/Player/FemC/Femc_Swimsuit", AssetType.CostumeMesh));
+        charAssets.Add(new("FEMC Tracksuit", Character.NONE, "/Game/Xrd777/Characters/Player/FemC/Femc_Tracksuit", AssetType.CostumeMesh));
+        charAssets.Add(new("FEMC Wilduck Burger Uniform", Character.NONE, "/Game/Xrd777/Characters/Player/FemC/Femc_WildDuck", AssetType.CostumeMesh));
+        charAssets.Add(new("FEMC Winter Casual", Character.NONE, "/Game/Xrd777/Characters/Player/FemC/Femc_Winter_Casual", AssetType.CostumeMesh));
+        charAssets.Add(new("FEMC Winter Uniform", Character.NONE, "/Game/Xrd777/Characters/Player/FemC/Femc_Winter_School", AssetType.CostumeMesh));
+        charAssets.Add(new("Uniform & Armband", Character.NONE, "/Game/Xrd777/Characters/Player/FemC/Femc_Winter_School_Battle", AssetType.CostumeMesh));
 
-        // Not added yet?
-        charAssets.Add(new("FEMC Summer Garb", Character.NONE, GetFemcCostume(991), AssetType.CostumeMesh));
-        charAssets.Add(new("FEMC Winter Garb", Character.NONE, GetFemcCostume(992), AssetType.CostumeMesh));
-
-        charAssets.Add(new("FEMC Uniform & Armband", Character.NONE, GetFemcCostume(998), AssetType.CostumeMesh));
-        charAssets.Add(new("FEMC SEES Uniform", Character.NONE, GetFemcCostume(999), AssetType.CostumeMesh));
-        charAssets.Add(new("FEMC Gekkoukan Jersey", Character.NONE, GetFemcCostume(985), AssetType.CostumeMesh));
-        charAssets.Add(new("FEMC Swimsuit", Character.NONE, AssetUtils.GetAssetPath(Character.Mitsuru, AssetType.CostumeMesh, 102), AssetType.CostumeMesh));
-        charAssets.Add(new("FEMC Nightwear", Character.NONE, GetFemcCostume(982), AssetType.CostumeMesh));
-        charAssets.Add(new("FEMC Maid Outfit", Character.NONE, AssetUtils.GetAssetPath(Character.Mitsuru, AssetType.CostumeMesh, 106), AssetType.CostumeMesh));
-        charAssets.Add(new("FEMC Track Team Shirt", Character.NONE, GetFemcCostume(985), AssetType.CostumeMesh));
-        //charAssets.Add(new("FEMC Hotel Yukata", Character.NONE, /* Not implemented */, AssetType.CostumeMesh));
-        charAssets.Add(new("FEMC Wilduck Burger Uniform", Character.NONE, GetFemcCostume(983), AssetType.CostumeMesh));
-        //charAssets.Add(new("FEMC Dorm Apron", Character.NONE, /* Not implemented */, AssetType.CostumeMesh));
-        charAssets.Add(new("FEMC Chagall Cafe Uniform", Character.NONE, GetFemcCostume(984), AssetType.CostumeMesh));
-        charAssets.Add(new("FEMC Be Blue V Uniform", Character.NONE, GetFemcCostume(980), AssetType.CostumeMesh));
-        charAssets.Add(new("FEMC Screen Shot Uniform", Character.NONE, GetFemcCostume(981), AssetType.CostumeMesh));
-
-        charAssets.Add(new("FEMC", Character.NONE, "/Game/Xrd777/Characters/Player/PC0002/Models/SK_PC0002_H999", AssetType.HairMesh));
-        charAssets.Add(new("FEMC", Character.NONE, "/Game/Xrd777/Characters/Player/PC0002/Models/SK_PC0002_F999", AssetType.FaceMesh));
+        charAssets.Add(new("FEMC", Character.NONE, "/Game/Xrd777/Characters/Player/FemC/Femc_Hair", AssetType.HairMesh));
+        charAssets.Add(new("FEMC", Character.NONE, "/Game/Xrd777/Characters/Player/FemC/Femc_Face", AssetType.FaceMesh));
+        charAssets.Add(new("FEMC", Character.NONE, "/Game/Xrd777/Characters/Player/FemC/Femc_Skeleton", AssetType.BaseMesh));
     }
 
     private static string GetFemcCostume(int costumeId)
