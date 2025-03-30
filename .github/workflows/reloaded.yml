@@ -37,7 +37,7 @@ env:
   
   IS_RELEASE: ${{ startsWith(github.ref, 'refs/tags/') }}
   RELEASE_TAG: ${{ github.ref_name }}
-  PROJECT_DIR: ./P3R.CharCreator.Reloaded
+  PROJECT_NAME: P3R.CharCreator.Reloaded
 
 jobs:
   build:
@@ -60,7 +60,7 @@ jobs:
     - name: Setup .NET Core SDK (7.0)
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 7.0.x
+        dotnet-version: 8.0.x
         
     - name: Setup Node.js
       uses: actions/setup-node@v2
@@ -81,13 +81,13 @@ jobs:
         }
         
     - name: Build
-      run: ${{ env.PROJECT_DIR }}/Publish.ps1
+      run: ${{ env.PROJECT_NAME }}/Publish.ps1
 
     - name: Copy Build
-      run: Copy-Item -Force -Path "${{ env.PROJECT_DIR }}/Publish/*" -Destination "./Publish" -Recurse
+      run: Copy-Item -Force -Path "${{ env.PROJECT_NAME }}/Publish/*" -Destination "./Publish" -Recurse
 
     - name: Upload GitHub Release Artifact
-      uses: actions/upload-artifact@v2.2.4
+      uses: actions/upload-artifact@v4
       with:
         # Artifact name
         name: GitHub Release
@@ -96,7 +96,7 @@ jobs:
           ${{ env.PUBLISH_GITHUB_PATH }}/*
           
     - name: Upload GameBanana Release Artifact
-      uses: actions/upload-artifact@v2.2.4
+      uses: actions/upload-artifact@v4
       with:
         # Artifact name
         name: GameBanana Release
@@ -105,7 +105,7 @@ jobs:
           ${{ env.PUBLISH_GAMEBANANA_PATH }}/*
 
     - name: Upload Changelog Artifact
-      uses: actions/upload-artifact@v2.2.4
+      uses: actions/upload-artifact@v4
       with:
         # Artifact name
         name: Changelog
@@ -120,11 +120,11 @@ jobs:
       contents: write
     steps:
     - name: Get changelog
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: Changelog
     - name: Get release
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: GitHub Release
         path: release
